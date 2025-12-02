@@ -1,4 +1,4 @@
-# 3ATIVE's findings for optimizing Unraid 10GbE Network Performance
+# 3ATIVE's findings for optimizing UnRaid 10GbE Network Performance
 
 ## From 30 MB/s to 800+ MB/s 🚀
 
@@ -9,7 +9,7 @@
 - [The Problem](#-the-problem)
 - [The Solution](#-the-solution)
 - [Part 1: Enable Jumbo Frames](#part-1-enable-jumbo-frames)
-  - [On Unraid](#on-unraid)
+  - [On UnRaid](#on-UnRaid)
   - [On Windows 11](#on-windows-11)
   - [Verify Jumbo Frames](#verify-jumbo-frames-are-working)
 - [Part 2: Keep SMB Config Simple](#part-2-keep-smb-config-simple-critical)
@@ -48,13 +48,13 @@
 
 Jumbo frames allow larger network packets (9000+ bytes vs 1500 bytes), dramatically reducing overhead on high-speed networks.
 
-### On Unraid
+### On UnRaid
 
 1. Navigate to **Settings → Network Settings**
 2. Find your network interface (typically `eth0`)
 3. Set **Desired MTU: 9000** (or 9014)
 4. Click **Apply**
-5. **Reboot Unraid**
+5. **Reboot UnRaid**
 
 #### Verify it worked:
 
@@ -103,7 +103,7 @@ Both should show `mtu 9000` (or `mtu 9014`)
 From Windows Command Prompt:
 
 ```cmd
-ping [your-unraid-ip] -f -l 8972
+ping [your-UnRaid-ip] -f -l 8972
 ```
 
 **✅ Success:**
@@ -122,7 +122,7 @@ Packet needs to be fragmented but DF set
 
 > **🔑 The Key Discovery:** Manual SMB "optimizations" actually **hurt** performance by disabling Linux's intelligent TCP auto-tuning.
 
-### On Unraid:
+### On UnRaid:
 
 1. **Settings → SMB**
 2. Check **SMB Extras** section
@@ -220,11 +220,11 @@ Should show: `Speed: 10000Mb/s`
 
 ## ✅ Final Configuration Checklist
 
-- [ ] Jumbo frames enabled on Unraid (MTU 9000/9014)
+- [ ] Jumbo frames enabled on UnRaid (MTU 9000/9014)
 - [ ] Jumbo frames enabled on Windows (9000/9014)
 - [ ] Network offloading enabled on Windows
 - [ ] Power management disabled on network adapter
-- [ ] SMB extras empty/minimal on Unraid
+- [ ] SMB extras empty/minimal on UnRaid
 - [ ] Switch supports jumbo frames
 - [ ] Both systems rebooted after changes
 
@@ -248,7 +248,7 @@ Improvement: ~25x faster! 🚀
 
 ## 🖥️ Hardware Tested
 
-- **Server:** Unraid with Intel i7-8700K
+- **Server:** UnRaid with Intel i7-8700K
 - **Network:** 10 Gigabit Ethernet
 - **Switch:** QNAP QSW-2104-2T
 - **Client:** Windows 11
